@@ -1,0 +1,32 @@
+{
+  "name": "@candlefw/cached_factory",
+  "version": "1.0.0",
+  "description": "Straight forward cached object factory",
+  "main": "cached_factory.mjs",
+  "scripts": {
+    "test": "nyc mocha -r esm ./test.js",
+    "test.watch": "mocha -r esm ./test.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/candlefw/cached_factory"
+  },
+  "keywords": [
+    "cache",
+    "factory",
+    "shortlived"
+  ],
+  "author": "Anthony C Weathersby",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "esm": "^3.2.25",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  },
+  "esm": {
+    "cjs": {
+      "cache": true
+    }
+  }
+}
