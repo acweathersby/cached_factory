@@ -43,7 +43,7 @@ const object_instance = new CachedObjectConstructor(array);
 class object_instance_class extends CachedObjectConstructor {};
 ````
 
-Collect the cached_object to return it to the cache pool:
+Collect the cached object to return it to the cache pool:
 
 ```js
 cached_factory.collect(object_instance);
