@@ -55,4 +55,4 @@ cached_factory.collect(object_instance);
 - `options:initializer` - **Function** - Called when an object is created or retrieved from the cache pool. It is passed the new object as its only argument.
 - `options:destructor` - **Function** - Called when an object released to back to cache pool through `cached_factory.collect`. It is passed a single argument which is the object that has been collected.
 - `options:pool` - **Integer** - Number of cached objects to prefill the cache with. When used with `options:release`, the cache will be reduced to this number when the release period occures. 
--`options:release` - **Integer** - Time in milliseconds between periods which the cache will be reduced to the value of `options:pool`.
+- `options:release` - **Integer** - Time in milliseconds between periods which the cache will be reduced to the value of `options:pool`.
