@@ -7,13 +7,26 @@ function cached_factory(object, options) {
     options = typeof options == "object" ? options : {};
 
     const 
-    	constructor = object.prototype.constructor,
+        prototype = object.prototype,
+    	constructor = prototype.constructor,
+
+
 
         pool_limit = parseInt(options.pool) || Infinity,
         release_period = parseInt(options.release_period || options.release) || 0,
 
-        destructor = typeof options.destructor == "function" ? options.destructor : empty_function,
-        initializer = typeof options.initializer == "function" ? options.initializer : empty_function,
+        destructor = 
+            typeof prototype.destructor == "function" 
+                    ? prototype.destructor
+                    : typeof options.destructor == "function" 
+                        ? options.destructor 
+                        : empty_function,
+        initializer = 
+            typeof prototype.initializer == "function" 
+                ? prototype.initializer
+                : typeof options.initializer == "function" 
+                    ? options.initializer 
+                    : empty_function,
         
         object_cache = [];
 
@@ -22,14 +35,14 @@ function cached_factory(object, options) {
 
         const object = (object_cache.length > 0) ? object_cache.pop() : new constructor(...args);
 
-        initializer(object);
+        initializer.apply(object, args);
 
         return object;
     }
 
     function returnObjectToCache(object) {
         try {
-            destructor(object);
+            destructor.call(object);
             object_cache.push(object);
             return true;
         } catch (e) {

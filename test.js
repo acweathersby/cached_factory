@@ -94,6 +94,37 @@ describe("CandleFW Cached Constructor Tests", function() {
         instance_count.should.equal(4);
     })
 
+    it("Uses initializer and destructor if these are found within the constructor's prototype.", function(){
+         var instance_count = 0, instance;
+        class test{
+            constructor(){
+                this.name = ""
+            }
+
+            initializer(testA, testB){
+                testA.should.equal("a");
+                testB.should.equal("b");
+                this.time = 2;
+                instance_count++;
+            }   
+
+            destructor(){
+                this.time.should.equal(2);
+                this.should.equal(instance);
+                instance_count++;
+            }
+        }
+
+        instance = new (cached_factory(test))("a", "b");
+
+        instance_count.should.equal(1);
+
+        cached_factory.collect(instance)
+
+        instance_count.should.equal(2);
+
+    })
+
     describe("cached_factory object constructor can be used as a normal constructor, i.e. for use \"class\" syntactical inheritance form", function(){
         it("Class inheritance", function(){
             var instance_count = 0;
