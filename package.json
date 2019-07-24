@@ -1,6 +1,6 @@
 {
   "name": "@candlefw/cached_factory",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Straight forward cached object factory",
   "main": "cached_factory.mjs",
   "scripts": {
